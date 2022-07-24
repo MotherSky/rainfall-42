@@ -1,0 +1,5 @@
+we run the program with ltrace and we got a segmentation fault, we try running it with an arguments and we see some libcs functions called such as malloc(64), malloc(4), then strcpy(0x0804a008[address returned by first malloc], "our input [argv1]"), and then puts("nope"), we run it with gdb to further analyze the program, if we check for any other functions we see n() and m(), we disas n(0x08048454), it's a function that calls system("/bin/cat /home/user/level7/.pass") and m(0x08048468) simply puts("Nope"). This level is very similar to level1, but instead of overwriting the buffer and overwriting the return, we will overwrite the address that executes m() into executing n().
+
+We can achieve that by simply printing 64 bytes + 8 bytes (for the address that contains the size of allocated chunk + whether the previous chunk is free, it always precedes malloc's return address) + n addr:
+
+python -c 'print "A"*72 + "\x54\x84\x04\x08"' > test

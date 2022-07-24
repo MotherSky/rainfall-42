@@ -1,0 +1,30 @@
+service = 0x8049ab0;
+auth = 0x8049aac;
+
+main(){
+    char buf[124]; //esp+0x20 = 0xbffff670
+    while (1){
+        printf("%p, %p \n", service, auth);
+        fgets(buf, 0x80, STDIN);
+        if (strncmp(buf, "auth ", 5)){
+            auth = malloc(4);
+            if (strlen(buf + 5) < 30){
+                strcpy(auth, buf+5)
+            }
+        }
+        if (strncmp(buf, "reset", 5)){
+            free(auth);
+        }
+        if (strncmp(buf, "service ", 6)){
+            service = strdup(buf + 7);
+        }
+        if (strncmp(buf, "login ", 5)){
+            if (0x804a028 != 0){ // auth(0x804a008)+20x
+                system("bin/sh");
+            }
+            else{
+                fwrite("Password:\n");
+            }
+        }
+    }
+}

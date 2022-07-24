@@ -1,0 +1,17 @@
+p(buf){
+    printf("%s", buf);
+}
+
+n(){
+    char buf[0x208];
+    fgets(buf, 0x200, stdin);
+    m = 0;
+    p(buf);
+    if (m == 0x1025544){ //0x1025544 = 16930116 in int
+        system("/bin/cat /home/user/level5/.pass");
+    }
+}
+
+main(){
+    n();
+}

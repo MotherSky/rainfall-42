@@ -1,0 +1,5 @@
+this level is also almost identical to the previous 2 levels except we have no cmp tests to pass, and since we have exit at the end of the function, we can't overwrite the return of the n function either, but luckily we can overwrite the GOT entry of exit(line +61 in n()) with the address of the o() function, which is normally set at the runtime to the location of exit function. we use gdb to get both the adresses of o (x o = 0x80484a4) and in "disass n" we follow the exit@plt call with "disass 0x80483d0", in the first instruction we see the address (0x8049838) that we need to change in order to execute o().
+tldr: we will overwrite (0x8049838(the jump inside exit@plt) with 0x80484a4(o function)).
+We will use same command from the previous exercise except the address, the offset and bytes written, first we will print 20 %x to get the offset, we see that it's 6, our python inline will be:
+(python -c 'print "A"*8 + "\x38\x98\x04\x08" + "%0134513816x" + "%6$n"'; cat) | ./level5
+(134513816 here is 0x80484a4 - 12 bytes that we have already written)

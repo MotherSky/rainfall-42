@@ -1,0 +1,17 @@
+p(){
+    char c[0x50];
+    fflush(stdout);
+    gets(c);
+    if (__return_address & 0xb0000000 == 0xb0000000){ #the address overwriting return shouldn't start with 0xb aka shouldn't be on the stack
+        write(__return_address);
+        exit(1);
+    }
+    else{
+        puts(c);
+        strdup(c);
+    }
+}0xb4df6g4fg
+
+main(){
+    p();
+}

@@ -1,0 +1,29 @@
+greetuser(){
+    if (language == 1){
+        greet = "Hyvää päivää ";
+    }
+    if (language == 2){
+        greet = "Goedemiddag! ";
+    }
+    else {
+        greet = "Hello ";
+    }
+    puts(strcat(s, dst1)); // 0xbffff5a0, 0xbffff5f0
+}
+
+main(int argc, char **argv){
+    if (argc != 3){
+        return (1);
+    }
+    strncpy(dst1, argv[1], 0x28); // 0xbffff650, 0xbffff88f, 0x28 as arguments
+    strncpy(dst2, argv[2], 0x20); // 0xbffff678(ds1+0x28), 0xbffff8c3, 0x20 as arguments
+    if (getenv("LANG") != 0){ // return 0x65
+        if (memcmp("en_US.UTF-8", "fi"", 0x2) == 0) // 0xbffffee8, 0x804873d, 0x2
+            language = 1; // 0x08049988
+        else if (memcmp("en_US.UTF-8", nl, 0x2) == 0){
+            language = 2; // 0x08049988
+        }
+    }
+    //rep movs ???? increments both esi and edi 19times(+4)
+    greetuser();
+}

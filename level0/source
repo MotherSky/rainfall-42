@@ -1,0 +1,14 @@
+main(argc, argv){
+    if (atoi(*(argv + 4) != 0x1a7)) // add 4 to argv to skip program name 
+    {
+        fwrite("No !\n");
+    }
+    else{
+        char *c = strdup("/bin/sh");
+        gid = getegid();
+        uid = geteuid();
+        setresgid(gid, gid, gid);
+        setresuid(uid, uid, uid);
+        execv(c);
+    }
+}

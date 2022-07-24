@@ -1,0 +1,16 @@
+main(int argc, char **argv){
+    if (ret = fopen("/home/user/end/.pass", r) == 0){ // 0x080486f2, 0x080486f0
+        if (argc == 0x2){
+            fread(buf1, 1, 0x42, ret); // reads 65 bytes from ret and put it into buf
+            buf[atoi(argv[1])] = 0;
+            fread(buf2, 1, 0x41, ret);
+            fclose(ret);
+            if (strcmp(buf1, argv[1]) == 0){
+                execl("/bin/sh", "sh", 0)
+            }
+            else{
+                puts(buf1+0x42);
+            }
+        }
+    }
+}

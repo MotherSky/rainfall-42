@@ -1,0 +1,18 @@
+m(){
+    printf("%s %ld", 0x8049960, time());
+    // this function outputs the string in memory address 0x8049960(c) and the time
+}
+
+main(){
+    ch
+    int a* = malloc(8); // 0x0804a008
+    *a = 1;
+    char b* = malloc(8); // 0x0804a018
+    int c* = malloc(8); // 0x0804a028
+    *c = 2;
+    char d* = malloc(8); // 0x0804a038
+    strcpy =(b, argv[1]);
+    strcpy =(d, argv[2]);
+    fgets(c, 0x44, fopen("/home/user/level8/.pass", "r"));
+    puts("~~\n");
+}

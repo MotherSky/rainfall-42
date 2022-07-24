@@ -1,0 +1,16 @@
+o(){
+    system("/bin/sh");
+    exit(1);
+}
+
+n(){
+    char buf[0x208];
+    fgets(buf, 0x200, stdin);
+    m = 0;
+    printf("%s", buf);
+    exit();
+}
+
+main(){
+    n();
+}

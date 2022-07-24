@@ -1,0 +1,14 @@
+v(){
+    char buf[0x208];
+    fgets(buf, 0x200, stdin);
+    printf("%s", buf)
+    m = 0;
+    if (m == 0x40){ // 0x40 = 64 in int
+        fwrite("Wait what?!\n");
+        system("/bin/sh");
+    }
+}
+
+main(){
+    v();
+}

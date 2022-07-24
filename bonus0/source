@@ -1,0 +1,27 @@
+p(char *dst, char *hyphen){
+    char buf[0x1000]; //buf starts on address 0xbfffe640 (ebp-0x1008)
+    puts(hyphen);
+    read(0, buf, 0x1000); // 4096
+    buf[strchr(buf, '\n')] = '\0'; // puts a terminating null at first occurence of '\n'
+    strncpy(dst, buf, 0x14); // copies first 20 characters of buffer(0xbfffe640) into 0xbffff678;
+}
+
+pp(){
+    p(dst1, " - "); // call function with 0xbffff678 and 0x80486a0(" - ") as arguments
+    p(dst2, " - "); // call function with 0xbffff68c and (" - ");
+    strcpy(str, dst1); //strcpy copies dst1+dst2 at str since they follow each other in memory
+    len = strlen(str);
+    str[len] = ' ';
+    strcat(str, dst2);
+
+}
+
+main(){
+    pp(str); //call function with 0xbffff6c6 as argument;
+    puts(str);
+    // return address is  0xbffff6fc with is 54bytes after str(0xbffff6c6)
+}
+
+0xbffffec1
+0xbffffba1
+0xbffffc69q

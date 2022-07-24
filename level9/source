@@ -1,0 +1,38 @@
+Class N{
+    public:
+        N(int n);
+        char *str; // size: 0x6c-0x4-0x4 (0x4 before when it's incremented in memcpy and 0x4 for the integer n)
+        int  n; // size: 0x4
+        setAnnotation(char *s, char *argv[1]);
+        operator+(N & rhs);
+        operator-(N & rhs);
+}
+
+N::N(int n){
+    // 0x804a008 = 0x8048848
+    this->n = n;
+}
+
+N::setAnnotation(char *s, char * argv[1]){
+    memcpy(s + 4, argv[1], strlen(argv[1]));
+}
+
+N::operator+(N& rhs){
+    return(this->n + rhs->n);
+}
+
+N::operator-(N& rhs){
+    return(this->n - rhs->n);
+}
+
+main(int argc, char){
+    if(argc <= 1){
+        exit(1);
+    }
+    N1 *n1 = new(0x6c); //returns 0x0804a008
+    N::N(0x5); // 0x0804a008	0x00000005 passed into it
+    N1 *n2 = new(0x6c); // returns 0x804a078
+    N::N(0x6); // 0x0804a078	0x00000006 passed into it
+    N::setAnnotation(argv[1]); // 0x0804a008	0xbffff898(argv[1]) passed into it
+    return (n1+n2);N::operator+(N&)//0x0804a078 is dereferenced 2 times then executed with (0x0804a078, 0x0804a008) as arguments
+}

@@ -1,0 +1,14 @@
+n(){
+    system("/bin/cat /home/user/level7/.pass");
+}
+m(){
+    puts("Nope);
+}
+
+main(){
+    a = malloc(0x40); //64
+    b = malloc(0x4); //4
+    b = &m // address to m : 0x8048468
+    strcpy(a, argv[1]);
+    (*b)();
+}

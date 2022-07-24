@@ -1,0 +1,8 @@
+main(int argc, char **argv){
+    if (atoi(argv[1] < 0x9){
+        memcpy(0xbffff674, argv[2], argv[1]*4);
+        if (0xbffff69c == 0x574f4c46){ // argv[1]'s address is 0xbffff69c
+            execl(0x2f, 0x73, );
+        }
+    }
+}

@@ -1,0 +1,10 @@
+run (){
+    fwrite("Good... Wait what?");
+    system("/bin/sh");
+}
+
+main(){
+    char c[0x50];
+    gets(c);
+}
+0xbffff69c
